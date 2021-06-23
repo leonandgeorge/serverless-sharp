@@ -49,6 +49,10 @@ const settings = {
   CUSTOM_DOMAIN: {
     default: '',
     type: TYPE_STRING
+  },
+  SEO_STRING_PREFIX: {
+    default: '/s/',
+    type: TYPE_STRING
   }
 }
 

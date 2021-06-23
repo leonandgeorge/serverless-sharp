@@ -17,7 +17,10 @@ class ImageRequest {
     const { bucket, prefix } = eventParser.processSourceBucket(settings.getSetting('SOURCE_BUCKET'))
     this.bucket = bucket
     this.prefix = prefix
-    this.key = eventParser.parseImageKey(event.path, prefix)
+    let seoPrefix = settings.getSetting('SEO_STRING_PREFIX')
+    let seoRegex = new RegExp("(" + seoPrefix + "[a-zA-Z0-9\-\_]+)(\.(jpeg|jpg|png))")
+    let filePath = event.path.replace(seoRegex, '$2')
+    this.key = eventParser.parseImageKey(filePath, prefix)
   }
 
   /**
